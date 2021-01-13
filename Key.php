@@ -16,6 +16,7 @@ class Key extends genericDataObject
      * @noinspection SqlResolve
      * @param $data
      * @param $type
+     * @return string id of inserted row
      */
     public function insert_db($data, $type = 0)
     {

@@ -35,7 +35,6 @@ class API
             case 'GET':
                 # When the method is GET, returns the client
                 return self::doGet();
-                break;
             case 'POST':
                 # When the method is POST, includes a new client
                 if (empty($route[1])) {
@@ -43,11 +42,9 @@ class API
                 } else {
                     return $arr_json = array('status' => 404);
                 }
-                break;
             default:
                 # When the method is different of the previous methods, return an error message.
                 return array('status' => 405);
-                break;
         }
     }
 
@@ -79,7 +76,7 @@ class API
         $ver_id = Key::insert($this->verifying, 1);
 
         /*
-         *  ToDo: stupid encryption here or sumthing that allows us to reverse the lookup...
+         *  ToDo: stupid encryption here or something that allows us to reverse the lookup...
          */
 
         return "ENCODED_STRING";
