@@ -9,11 +9,13 @@ class Key extends genericDataObject
     }
 
     /**
-     * @return string of publicKey
+     * @param $data string of key data
+     * @param $type int
+     * @return string id of inserted row
      */
-    public function getData(){
-        $data = self::getFromDB();
-        return (isset($data["data"]) ? $data["data"] : '');
+    public static function insert($data, $type = 0)
+    {
+        return (new Key(null))->insert_db($data, $type);
     }
 
     /**
@@ -31,12 +33,12 @@ class Key extends genericDataObject
     }
 
     /**
-     * @param $data string of key data
-     * @param $type int
-     * @return string id of inserted row
+     * @return string of publicKey
      */
-    public static function insert($data, $type = 0) {
-        return (new Key(null))->insert_db($data, $type);
+    public function getData()
+    {
+        $data = self::getFromDB();
+        return (isset($data["data"]) ? $data["data"] : '');
     }
 
 }

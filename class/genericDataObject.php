@@ -27,7 +27,8 @@ class genericDataObject
      * get data from db where id = $id
      * @return mixed
      */
-    public function getFromDB(){
+    public function getFromDB()
+    {
         $sql = 'SELECT * FROM ' . $this->field . ' WHERE id = :id';
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(":id", $this->id);
@@ -41,8 +42,9 @@ class genericDataObject
      * @return bool result
      * @noinspection SqlResolve - cant use this inspection as we are using this as our generic...
      */
-    public function insert_db($data){
-        $sql = $this->db->prepare("INSERT IGNORE INTO ". $this->field ." (data) VALUES (:data)");
+    public function insert_db($data)
+    {
+        $sql = $this->db->prepare("INSERT IGNORE INTO " . $this->field . " (data) VALUES (:data)");
         $sql->bindParam(':data', $data);
         $sql->execute();
         return $this->db->lastInsertId($this->field);

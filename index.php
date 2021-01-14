@@ -33,4 +33,3 @@ if (count($route) <= 2) {
 
 echo json_encode($arr_json);
 
-?>

@@ -1,5 +1,5 @@
 <?php
-include ('ConnectionDB.php');
+include('ConnectionDB.php');
 include('class/Capsule.php');
 include('class/Key.php');
 include('class/kFrag.php');
@@ -58,9 +58,9 @@ class API
         }
 
         try {
-            return array('status' => 200 , 'data' => (new cFrag($capsule, $kFrag, $delegating, $receiving, $verifying))->reEncrypt());
+            return array('status' => 200, 'data' => (new cFrag($capsule, $kFrag, $delegating, $receiving, $verifying))->reEncrypt());
         } catch (Exception $e) {
-            return array('status' => 500 , 'data' => $e->getMessage());
+            return array('status' => 500, 'data' => $e->getMessage());
         }
     }
 

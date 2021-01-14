@@ -10,6 +10,7 @@ class cFrag
     private $receiving;
     private $verifying;
     private $db;
+
     /**
      * kFrag constructor.
      * @param $capsule string of capsule in base64
@@ -45,7 +46,7 @@ class cFrag
 
         $output = null;
         $result = null;
-        exec("java -jar Bishop.jar " . $this->delegating . " " . $this->receiving . " " . $this->verifying . " " . $this->capsule . " " . $this->kFrag,$output, $result);
+        exec("java -jar Bishop.jar " . $this->delegating . " " . $this->receiving . " " . $this->verifying . " " . $this->capsule . " " . $this->kFrag, $output, $result);
         if ($result == 0)
             return $output;
         throw new Exception("[ERROR] [cFrag] -> java exited with non 0 exit code");
