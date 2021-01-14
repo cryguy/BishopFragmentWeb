@@ -8,14 +8,17 @@ class Key extends genericDataObject
         parent::__construct("pubKey", $id);
     }
 
+    /**
+     * @return string of publicKey
+     */
     public function getData(){
-        return self::getFromDB()["data"];
+        $data = self::getFromDB();
+        return (isset($data["data"]) ? $data["data"] : '');
     }
 
-    /** @noinspection SqlNoDataSourceInspection
-     * @noinspection SqlResolve
-     * @param $data
-     * @param $type
+    /**
+     * @param $data string of key data
+     * @param $type int
      * @return string id of inserted row
      */
     public function insert_db($data, $type = 0)
@@ -27,6 +30,11 @@ class Key extends genericDataObject
         return $this->db->lastInsertId("key");
     }
 
+    /**
+     * @param $data string of key data
+     * @param $type int
+     * @return string id of inserted row
+     */
     public static function insert($data, $type = 0) {
         return (new Key(null))->insert_db($data, $type);
     }

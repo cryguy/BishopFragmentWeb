@@ -1,11 +1,11 @@
 <?php
-$route 	= $_SERVER['REQUEST_URI'];
+$route = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
 $route = substr($route, 1);
 $route = explode("?", $route);
 $route = explode("/", $route[0]);
-$route = array_diff($route, array('API_Restful', 'api'));
+$route = array_diff($route, array('api'));
 $route = array_values($route);
 
 $arr_json = null;
@@ -16,8 +16,10 @@ if (count($route) <= 2) {
         case 'oracle':
             # code...
             include('API.php');
+            if ($method == "GET")
+                $_REQUEST['data'] = (isset($route[1]) ? $route[1] : $_REQUEST['data']);
             $client = new API($_REQUEST['data']);
-            $arr_json = $client->verifyMethod($method,$route);
+            $arr_json = $client->reroute($method, $route);
             break;
 
         default:
@@ -25,7 +27,7 @@ if (count($route) <= 2) {
             break;
     }
 
-}else{
+} else {
     $arr_json = array('status' => 404);
 }
 

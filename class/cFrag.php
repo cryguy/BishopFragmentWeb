@@ -50,13 +50,4 @@ class cFrag
             return $output;
         throw new Exception("[ERROR] [cFrag] -> java exited with non 0 exit code");
     }
-
-    public function __toString()
-    {
-        try {
-            return $this->reEncrypt();
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
-    }
 }

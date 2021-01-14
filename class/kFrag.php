@@ -8,10 +8,18 @@ class kFrag extends genericDataObject
         parent::__construct("kFrag", $id);
     }
 
+    /**
+     * @return string json of kFrag
+     */
     public function getData(){
-        return self::getFromDB()["data"];
+        $data = self::getFromDB();
+        return (isset($data["data"]) ? $data["data"] : '');
     }
 
+    /**
+     * @param $data string containing kFrag json data
+     * @return int id of inserted row
+     */
     public static function insert($data) {
         return (new kFrag(null))->insert_db($data);
     }
